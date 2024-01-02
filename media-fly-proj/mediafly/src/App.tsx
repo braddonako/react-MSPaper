@@ -1,7 +1,6 @@
 import React from 'react';
 import SelectLayout from './components/SelectLayout';
 
-
 function App() {
   return (
     <div>

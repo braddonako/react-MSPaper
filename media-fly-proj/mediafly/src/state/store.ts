@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './counter/counterSlice';
+import containersReducer from './selectLayout/selectLayoutSlice';
 
 export const store = configureStore({
     reducer: {
-        counter: counterReducer,
+        containers: containersReducer,
     },
 });
-
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-

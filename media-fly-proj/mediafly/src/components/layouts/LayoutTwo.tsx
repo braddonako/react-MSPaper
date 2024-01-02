@@ -5,7 +5,7 @@ import '../../styles.css';
 const LayoutTwo = () => {
 
     return <div>
-        <SelectLayoutContainer><Grid /></SelectLayoutContainer>
+        <SelectLayoutContainer id={2}><Grid /></SelectLayoutContainer>
     </div>
 };
 
@@ -13,25 +13,16 @@ const LayoutTwo = () => {
 const Grid = () => (
     <div className="SelectContainer">
         {/* Header */}
-        <div style={{ gridRow: '1', gridColumn: '1 / span 3', border: '1px solid #ccc', textAlign: 'center', fontSize: '24px' }}>
-            Header
-        </div>
+        <div className='SelectLayoutHeaderSpan3' />
 
-        {/* First Column */}
-        <div style={{ gridRow: '2', gridColumn: '1', border: '1px solid #ccc', padding: '60px' }}>
-            Column 1
-        </div>
+        <div className='SelectLayoutColumnOne' />
 
-        {/* Second Column */}
-        <div style={{ gridRow: '2', gridColumn: '2', border: '1px solid #ccc', padding: '60px' }}>
-            Column 2
-        </div>
+        <div className='SelectLayoutColumnTwo' />
 
-        {/* Third Column (Additional Column) */}
-        <div style={{ gridRow: '2', gridColumn: '3', border: '1px solid #ccc', padding: '60px' }}>
-            Column 3
-        </div>
-    </div>
+        <div className='SelectLayoutColumnThree' />
+
+
+    </div >
 );
 
 export default LayoutTwo;
