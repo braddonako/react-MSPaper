@@ -13,6 +13,7 @@ type ContainerProps = {
 const SelectLayoutContainer: React.FC<ContainerProps> = ({ children, id }) => {
     const dispatch = useDispatch();
     const selectedContainerId = useSelector((state: RootState) => state.containers.selectedContainerId);
+
     const handleClick = () => {
         dispatch(selectContainer(id));
     };

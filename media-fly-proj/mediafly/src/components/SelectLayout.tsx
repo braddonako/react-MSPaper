@@ -3,10 +3,19 @@ import LayoutThree from "./layouts/LayoutThree";
 import LayoutTwo from "./layouts/LayoutTwo";
 import '../styles.css';
 import CustomButton from "./buttons/button";
+import { useDispatch, useSelector } from 'react-redux';
+import { selectContainer } from '../state/selectLayout/selectLayoutSlice';
+import { RootState } from '../state/store';
 
 
 
 const SelectLayout = () => {
+    const dispatch = useDispatch();
+    const selectedContainerId = useSelector((state: RootState) => state.containers.selectedContainerId);
+    const handleClick = () => {
+        console.log(selectedContainerId);
+    };
+
     // In a enterprise level project, I would make each of the strings a key value pair for localization. I am not sure you all support this currently,
     // But it is good to have in the future
     return <div>
@@ -24,7 +33,7 @@ const SelectLayout = () => {
             <LayoutThree />
         </div>
 
-        <CustomButton onClick={() => { }} text="NEXT" />
+        <CustomButton onClick={() => handleClick()} text="NEXT" />
     </div>
 };
 
