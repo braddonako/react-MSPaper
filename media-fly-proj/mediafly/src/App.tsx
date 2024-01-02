@@ -1,11 +1,12 @@
 import React from 'react';
-import Counter from './components/Counter';
+import SelectLayout from './components/SelectLayout';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Counter />
+    <div>
+      <header>
+        <SelectLayout />
       </header>
     </div>
   );

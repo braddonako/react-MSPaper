@@ -1,0 +1,23 @@
+.SelectContainer {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    height: 500px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+    gap: 10px;
+}
+
+.selectLayoutDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+/* Adjust styles for smaller screens */
+@media (max-width: 768px) {
+    .selectLayoutDiv {
+        justify-content: center;
+    }
+}
