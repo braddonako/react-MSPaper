@@ -37,6 +37,21 @@
     margin-bottom: 20px;
 }
 
+.highlighted {
+    border: 2px solid #66ff00;
+}
+
+.vertical-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.vertical-buttons>* {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* Adjust the value as needed for the desired spacing */
+}
+
 .square-column::before {
     content: '';
     display: block;
