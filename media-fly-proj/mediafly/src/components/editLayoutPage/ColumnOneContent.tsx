@@ -45,7 +45,20 @@ export function ColumnOneContent() {
     };
 
     const generateButtons = () => {
-        return sections.map((section) => (
+        const validButtons = sections.filter((section) => {
+            if (location.state.id === 1 && (section === 'column3' || section === 'footer')) {
+                return false;
+            }
+            if (location.state.id === 2 && section === 'footer') {
+                return false;
+            }
+            if (location.state.id === 3 && section === 'column3') {
+                return false;
+            }
+            return true;
+        });
+
+        return validButtons.map((section) => (
             <Button key={section} text={section.charAt(0).toUpperCase() + section.slice(1)} onClick={() => handleButtonClick(section)} />
         ));
     };
