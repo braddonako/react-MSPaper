@@ -11,18 +11,14 @@ const LayoutTwo = () => {
 
 
 const Grid = () => (
-    <div className="SelectContainer">
-        {/* Header */}
-        <div className='SelectLayoutHeaderSpan3' />
-
-        <div className='SelectLayoutColumnOne' />
-
-        <div className='SelectLayoutColumnTwo' />
-
-        <div className='SelectLayoutColumnThree' />
-
-
-    </div >
+    <div className="container">
+        <header className="header" />
+        <div className="columns-container">
+            <div className="square-column" />
+            <div className="square-column" />
+            <div className="square-column" />
+        </div>
+    </div>
 );
 
 export default LayoutTwo;

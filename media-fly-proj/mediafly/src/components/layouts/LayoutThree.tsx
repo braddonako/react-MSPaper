@@ -10,17 +10,14 @@ const LayoutThree = () => {
 
 
 const Grid = () => (
-    <div className="SelectContainer">
-        {/* Header */}
-        <div className='SelectLayoutHeaderSpan2' />
+    <div className="container">
+        <header className="header" />
+        <div className="columns-container">
+            <div className="square-column" />
+            <div className="square-column" />
 
-        <div className='SelectLayoutColumnOne' />
-
-        <div className='SelectLayoutColumnTwo' />
-
-        <div className='SelectLayoutFooter' />
-
-
+        </div>
+        <footer className="footer" />
     </div>
 );
 

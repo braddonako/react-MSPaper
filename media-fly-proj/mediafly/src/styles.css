@@ -1,73 +1,75 @@
-.SelectContainer {
-    display: grid;
-    grid-template-rows: auto auto auto;
-    height: 500px;
-    background-color: #d3d3d3;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-left: 64px;
-    padding-right: 64px;
-    padding-top: 10px;
-    gap: 10px;
-}
-
 .SelectLayoutDiv {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
-.SelectLayoutHeaderSpan2 {
-    grid-row: 1;
-    grid-column: 1 / span 2;
-    border: 1px solid #ccc;
+/* LayoutOne */
+
+.container {
+    background-color: #f0f0f0;
     padding: 20px;
-    background-color: #808080;
+    max-width: 1200px;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
 }
 
-.SelectLayoutHeaderSpan3 {
-    grid-row: 1;
-    grid-column: 1 / span 3;
-    border: 1px solid #ccc;
+.header {
+    background-color: #808080;
+    font-size: 24px;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.columns-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.square-column {
+    flex: 1;
+    background-color: #808080;
     padding: 20px;
-    background-color: #808080;
+    border: 1px solid #ccc;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.SelectLayoutColumnOne {
-    grid-row: 2;
-    grid-column: 1;
-    border: 1px solid #ccc;
-    padding: 60px;
-    background-color: #808080;
+.square-column::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
 }
 
-.SelectLayoutColumnTwo {
-    grid-row: 2;
-    grid-column: 2;
-    border: 1px solid #ccc;
+.footer {
+    width: 94%;
     background-color: #808080;
-    padding: 60px;
-}
+    padding: 10px;
+    text-align: center;
 
-.SelectLayoutColumnThree {
-    grid-row: 2;
-    grid-column: 3;
-    border: 1px solid #ccc;
-    background-color: #808080;
-    padding: 60px;
-}
-
-.SelectLayoutFooter {
-    grid-row: 3;
-    grid-column: 1 / span 2;
-    border: 1px solid #ccc;
-    background-color: #808080;
-    height: 32px
 }
 
 /* Adjust styles for smaller screens */
 @media (max-width: 768px) {
-    .selectLayoutDiv {
-        justify-content: center;
+    .square-column {
+        width: calc(50% - 20px);
+        /* Adjust column width on smaller screens */
     }
+}
+
+/* Background image */
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.full-width-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* This property ensures that the image covers the entire container */
 }
