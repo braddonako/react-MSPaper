@@ -15,8 +15,11 @@ const highlightSlice = createSlice({
         setHighlightedSection: (state, action: PayloadAction<string>) => {
             state.highlightedSection = action.payload;
         },
+        clearHighlightedSection: (state) => {
+            state.highlightedSection = null;
+        }
     },
 });
 
-export const { setHighlightedSection } = highlightSlice.actions;
+export const { setHighlightedSection, clearHighlightedSection } = highlightSlice.actions;
 export default highlightSlice.reducer;
