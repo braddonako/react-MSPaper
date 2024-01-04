@@ -1,17 +1,22 @@
 .SelectLayoutDiv {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-evenly;
+    overflow-x: auto;
+}
+
+.Layout {
+    flex: 1;
 }
 
 /* LayoutOne */
 
-.container {
+.background {
     background-color: #f0f0f0;
+    border: 1px solid black;
     padding: 20px;
     max-width: 1200px;
     width: 300px;
-    height: 300px;
     margin: 0 auto;
 }
 
@@ -22,23 +27,14 @@
     margin-bottom: 20px;
 }
 
-.columns-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+.grid-item.highlighted {
+    background-color: #66ff00;
+    /* Background color when highlighted */
 }
 
-.square-column {
-    flex: 1;
-    background-color: #808080;
-    padding: 20px;
-    border: 1px solid #ccc;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.highlighted {
-    border: 2px solid #66ff00;
+.background.highlighted {
+    border-color: #66ff00;
+    /* Background color when highlighted */
 }
 
 .vertical-buttons {
@@ -50,28 +46,6 @@
     margin-top: 10px;
     margin-bottom: 10px;
     /* Adjust the value as needed for the desired spacing */
-}
-
-.square-column::before {
-    content: '';
-    display: block;
-    padding-top: 100%;
-}
-
-.footer {
-    width: 94%;
-    background-color: #808080;
-    padding: 10px;
-    text-align: center;
-
-}
-
-/* Adjust styles for smaller screens */
-@media (max-width: 768px) {
-    .square-column {
-        width: calc(50% - 20px);
-        /* Adjust column width on smaller screens */
-    }
 }
 
 /* Background image */

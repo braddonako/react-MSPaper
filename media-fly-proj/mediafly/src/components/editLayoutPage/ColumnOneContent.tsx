@@ -1,87 +1,48 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { setHighlightedSection } from '../../state/editLayout/highlightSlice';
-import Button from '../buttons/button';
-import { RootState } from '../../state/store';
-import '../../styles.css';
+import Grid from '../grid';
+import { useDispatch } from 'react-redux';
+import { setHighlightedSection } from '../../state/grid/gridSlice';
 
-const sections = ['background', 'header', 'column1', 'column2', 'column3', 'footer'];
+interface ColumnOneContentProps {
+    layout: { rows: number; columns: number[] };
+}
 
-type Layouts = {
-    [key: string]: React.ReactNode;
+const ColumnOneContent: React.FC<ColumnOneContentProps> = ({ layout }) => {
+    const dispatch = useDispatch();
+
+    const handleButtonClick = (rowIndex: number, colIndex: number, isBackground: boolean = false) => {
+        const sectionIdentifier = isBackground ? 'background' : `column${colIndex + 1}row${rowIndex + 1}`;
+        dispatch(setHighlightedSection(sectionIdentifier));
+    };
+
+    const renderButtons = () => {
+        // Button for highlighting the background container
+        const backgroundButton = (
+            <button
+                key="button-background"
+                onClick={() => handleButtonClick(0, 0, true)} // You can choose any default values for rowIndex and colIndex
+            >
+                Highlight Background
+            </button>
+        );
+
+        const buttons: JSX.Element[] = [backgroundButton];
+
+        for (let rowIndex = 0; rowIndex < layout.rows; rowIndex++) {
+            for (let colIndex = 0; colIndex < layout.columns[rowIndex]; colIndex++) {
+                buttons.push(
+                    <button
+                        key={`button-column${colIndex + 1}-row${rowIndex + 1}`}
+                        onClick={() => handleButtonClick(rowIndex, colIndex)}
+                    >
+                        {`Highlight Column ${colIndex + 1} Row ${rowIndex + 1}`}
+                    </button>
+                );
+            }
+        }
+        return buttons;
+    };
+
+    return <div><Grid layout={layout} isEditMode={false} /> <div className='vertical-buttons'>{renderButtons()}</div></div>
 };
 
-
-export function ColumnOneContent() {
-    const location = useLocation();
-    const dispatch = useDispatch();
-    const highlightedSection = useSelector((state: RootState) => state.highlight.highlightedSection);
-
-    const handleButtonClick = (section: string) => {
-        dispatch(setHighlightedSection(section));
-    };
-
-    const renderColumnOne = () => {
-        const layouts: Layouts = {
-            '1': layoutOne(),
-            '2': layoutTwo(),
-            '3': layoutThree(),
-        };
-        return <div>{layouts[location.state.id]}</div>;
-    };
-
-    const generateSquareColumns = (numColumns: number) => {
-        const columns = [];
-        for (let i = 1; i <= numColumns; i++) {
-            columns.push(
-                <div
-                    key={`column${i}`}
-                    className={`square-column ${highlightedSection === `column${i}` ? 'highlighted' : ''}`}
-                />
-            );
-        }
-        return columns;
-    };
-
-    const generateButtons = () => {
-        const validButtons = sections.filter((section) => {
-            if (location.state.id === 1 && (section === 'column3' || section === 'footer')) {
-                return false;
-            }
-            if (location.state.id === 2 && section === 'footer') {
-                return false;
-            }
-            if (location.state.id === 3 && section === 'column3') {
-                return false;
-            }
-            return true;
-        });
-
-        return validButtons.map((section) => (
-            <Button key={section} text={section.charAt(0).toUpperCase() + section.slice(1)} onClick={() => handleButtonClick(section)} />
-        ));
-    };
-
-    const generateLayout = (numColumns: number, hasFooter = false) => {
-        return (
-            <div>
-                <div className={`container ${highlightedSection === 'background' ? 'highlighted' : ''}`}>
-                    <div className={`header ${highlightedSection === 'header' ? 'highlighted' : ''}`} />
-                    <div className="columns-container">
-                        {generateSquareColumns(numColumns)}
-                        {hasFooter && <div className={`footer ${highlightedSection === 'footer' ? 'highlighted' : ''}`} />}
-                    </div>
-                </div>
-
-                <div className="vertical-buttons">{generateButtons()}</div>
-            </div>
-        );
-    };
-
-    const layoutOne = () => generateLayout(2);
-    const layoutTwo = () => generateLayout(3);
-    const layoutThree = () => generateLayout(2, true);
-
-    return renderColumnOne();
-}
+export default ColumnOneContent;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { clearBackgroundImage } from '../../state/imagePicker/backgroundImageSlice';
-import { clearHighlightedSection } from '../../state/editLayout/highlightSlice';
+import { clearHighlightedColor } from '../../state/grid/gridSlice';
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -35,7 +35,7 @@ const Header: React.FC = () => {
   const handleCloseButtonClick = () => {
     navigate('/');
     dispatch(clearBackgroundImage());
-    dispatch(clearHighlightedSection());
+    dispatch(clearHighlightedColor());
   };
 
   return (

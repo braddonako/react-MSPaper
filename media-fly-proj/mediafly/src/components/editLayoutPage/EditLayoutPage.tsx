@@ -4,8 +4,9 @@ import Header from './Header';
 import '../../styles.css';
 import Column from './Columns';
 import ImageUploadButton from '../buttons/ImageUploadButton';
-import { ColumnOneContent } from './ColumnOneContent';
-import { ColumnTwoContent } from './ColumnTwoContent';
+import ColumnOneContent from './ColumnOneContent';
+import ColumnTwoContent from './ColumnTwoContent';
+import { useLocation } from 'react-router-dom';
 
 const AppContainer = styled.div`
   display: flex;
@@ -19,16 +20,18 @@ const ColumnsContainer = styled.div`
 `;
 
 function EditLayoutPage() {
-    return (
-        <AppContainer>
-            <Header />
-            <ColumnsContainer>
-                <Column flex={2}><div>{ColumnOneContent()}</div></Column>
-                <Column flex={7}>{ColumnTwoContent()} </Column>
-                <Column flex={2}><div><ImageUploadButton /></div></Column>
-            </ColumnsContainer>
-        </AppContainer>
-    );
+  const location = useLocation();
+
+  return (
+    <AppContainer>
+      <Header />
+      <ColumnsContainer>
+        <Column flex={2}><ColumnOneContent layout={location.state.layout} /></Column>
+        <Column flex={7}><ColumnTwoContent layout={location.state.layout} /> </Column>
+        <Column flex={2}><ImageUploadButton /></Column>
+      </ColumnsContainer>
+    </AppContainer>
+  );
 }
 
 export default EditLayoutPage;

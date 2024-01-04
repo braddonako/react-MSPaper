@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import containersReducer from './selectLayout/selectLayoutSlice';
 import backgroundReducer from './imagePicker/backgroundImageSlice';
-import highlightReducer from './editLayout/highlightSlice';
+import gridReducer from './grid/gridSlice';
 
 export const store = configureStore({
     reducer: {
         containers: containersReducer,
         background: backgroundReducer,
-        highlight: highlightReducer,
+        grid: gridReducer,
     },
 });
 export type RootState = ReturnType<typeof store.getState>;
