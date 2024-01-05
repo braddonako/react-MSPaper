@@ -35,6 +35,7 @@ const SelectLayout = () => {
                     <Layout key={layout.id} layout={layout} id={layout.id} onClick={() => handleClick(layout)} />
                 ))}
             </div>
+
         </div>
     );
 };
