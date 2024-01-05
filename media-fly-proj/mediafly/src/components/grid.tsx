@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setGrid, setHighlightedSection, setSquareImage } from '../state/grid/gridSlice';
+import { setGrid } from '../state/grid/gridSlice';
 import { RootState } from '../state/store';
 import '../styles.css'
 
@@ -21,8 +21,14 @@ const Grid: React.FC<GridProps> = ({ layout, isEditMode }) => {
 
 
     const renderGridItems = () => {
+        console.log(squareColors);
+        const gridContainerStyle = {
+            backgroundImage: isEditMode ? `url(${squareImages['grid-container'] || ''})` : 'none',
+            backgroundSize: 'cover',
+            backgroundColor: isEditMode ? `#${squareColors['grid-container'].replace('#', '')}` : '',
+        };
         return (
-            <div className={`grid-container ${highlightedSection === 'grid-container' ? 'highlighted' : ''}`}>
+            <div className={`grid-container ${(highlightedSection === 'grid-container' || highlightedSection === "") ? 'highlighted' : ''}`} style={gridContainerStyle}>
                 {Array.from({ length: layout.rows }, (_, rowIndex) => (
                     <div key={rowIndex} style={{ display: 'flex' }}>
                         {Array.from({ length: layout.columns[rowIndex] }, (_, colIndex) => {

@@ -19,6 +19,7 @@ const ColumnOneContent: React.FC<ColumnOneContentProps> = ({ layout }) => {
     const handleButtonClick = (rowIndex: number, colIndex: number, isBackground: boolean = false) => {
         const sectionIdentifier = isBackground ? 'grid-container' : `column${colIndex + 1}row${rowIndex + 1}`;
         dispatch(setHighlightedSection(sectionIdentifier));
+        console.log(sectionIdentifier);
     };
 
     const renderButtons = () => {

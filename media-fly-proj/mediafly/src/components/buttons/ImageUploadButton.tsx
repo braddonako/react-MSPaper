@@ -15,7 +15,6 @@ const ImageUploader: React.FC = () => {
         if (file) {
             const imageUrl = URL.createObjectURL(file);
             dispatch(setSquareImage({ squareId: highlightedSection, imageUrl }));
-            dispatch(setHighlightedSection('')); // Optionally, clear the highlighted section
         }
 
     };
