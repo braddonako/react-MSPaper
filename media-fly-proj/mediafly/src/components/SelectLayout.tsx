@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../state/store';
 import Layout from './layouts/Layout';
-import CustomButton from './buttons/button';
 import '../styles.css';
 
 const SelectLayout = () => {

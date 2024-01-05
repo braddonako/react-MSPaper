@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSquareText } from '../state/grid/gridSlice'; // Import your grid slice actions
+import { setSquareText } from '../../state/grid/gridSlice'; // Import your grid slice actions
+import CustomButton from '../buttons/button';
 
 interface SquareTextInputProps {
     squareId: string;
@@ -24,7 +25,7 @@ const SquareTextInput: React.FC<SquareTextInputProps> = ({ squareId }) => {
     };
 
     return (
-        <div>
+        <div className="upload-container">
             <input
                 type="text"
                 value={inputValue}
@@ -32,7 +33,10 @@ const SquareTextInput: React.FC<SquareTextInputProps> = ({ squareId }) => {
                 onBlur={handleInputBlur}
                 placeholder={`Enter text for square ${squareId}`}
             />
-            <button onClick={handleButtonClick}>Update Text</button>
+            <CustomButton
+                onClick={handleButtonClick}
+                text='Update Text'
+            />
         </div>
     );
 };

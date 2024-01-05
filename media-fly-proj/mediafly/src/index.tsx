@@ -9,6 +9,7 @@ import {
 import App from './App'
 import ErrorPage from './components/error/ErrorPage';
 import EditLayoutPage from './components/editLayoutPage/EditLayoutPage';
+import PreviewLayoutPage from './components/editLayoutPage/PreviewLayoutPage';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,11 @@ const router = createBrowserRouter([
   {
     path: "/editLayoutPage",
     element: <EditLayoutPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/previewLayout",
+    element: <PreviewLayoutPage />,
     errorElement: <ErrorPage />,
   },
 ]);

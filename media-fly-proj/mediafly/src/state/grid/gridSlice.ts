@@ -4,7 +4,7 @@ interface GridState {
     rows: number;
     columns: number[];
     highlightedSection: string;
-    squareColors: Record<string, string>; // Mapping of square identifiers to colors
+    squareColors: Record<string, string>;
     squareImages: Record<string, string>;
     squareTexts: Record<string, string>;
 }
@@ -13,7 +13,7 @@ const initialState: GridState = {
     rows: 1,
     columns: [1],
     highlightedSection: '',
-    squareColors: {}, // New property to store square colors
+    squareColors: {},
     squareImages: {},
     squareTexts: {},
 };
@@ -41,7 +41,11 @@ const gridSlice = createSlice({
             const { squareId, text } = action.payload;
             state.squareTexts[squareId] = text;
         },
-        clearSquareImage: (state) => {
+        clearSquareImage: (state, action: PayloadAction<string>) => {
+            const squareId = action.payload;
+            delete state.squareImages[squareId];
+        },
+        clearSquareImages: (state) => {
             state.squareImages = {};
         },
         clearSquareText: (state) => {
@@ -64,6 +68,7 @@ export const {
     setSquareText,
     clearSquareColor,
     clearSquareImage,
+    clearSquareImages,
     clearSquareText,
     clearHighlightedColor,
 } = gridSlice.actions;

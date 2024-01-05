@@ -1,7 +1,7 @@
-import Grid from '../grid';
+import Grid from '../../grid';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setHighlightedSection } from '../../state/grid/gridSlice';
+import { setHighlightedSection } from '../../../state/grid/gridSlice';
 
 interface ColumnOneContentProps {
     layout: { rows: number; columns: number[] };
@@ -19,11 +19,9 @@ const ColumnOneContent: React.FC<ColumnOneContentProps> = ({ layout }) => {
     const handleButtonClick = (rowIndex: number, colIndex: number, isBackground: boolean = false) => {
         const sectionIdentifier = isBackground ? 'grid-container' : `column${colIndex + 1}row${rowIndex + 1}`;
         dispatch(setHighlightedSection(sectionIdentifier));
-        console.log(sectionIdentifier);
     };
 
     const renderButtons = () => {
-        console.log(highlightedSection);
         const backgroundButton = (
 
             <button

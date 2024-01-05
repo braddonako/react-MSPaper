@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { clearHighlightedColor, clearSquareColor, clearSquareImage, clearSquareText } from '../../state/grid/gridSlice';
+import { clearHighlightedColor, clearSquareColor, clearSquareImages, clearSquareText } from '../../state/grid/gridSlice';
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -35,7 +35,7 @@ const Header: React.FC = () => {
     navigate('/');
     dispatch(clearHighlightedColor());
     dispatch(clearSquareColor());
-    dispatch(clearSquareImage());
+    dispatch(clearSquareImages());
     dispatch(clearSquareText());
   };
 

@@ -1,8 +1,9 @@
 import React, { useState, KeyboardEvent } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSquareColor } from '../state/grid/gridSlice'; // Replace with the correct path to your grid slice
+import { setSquareColor } from '../../state/grid/gridSlice'; // Replace with the correct path to your grid slice
 import { HexColorPicker } from 'react-colorful';
-import { clearSquareImage } from '../state/grid/gridSlice';
+import { clearSquareImage } from '../../state/grid/gridSlice';
+import CustomButton from '../buttons/button';
 
 
 
@@ -17,17 +18,19 @@ const ColorInput: React.FC<ColorInputProps> = ({ squareId }) => {
     const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             updateColor();
-            dispatch(clearSquareImage());
+            dispatch(clearSquareImage(squareId));
         }
     };
 
     const updateColor = () => {
-        dispatch(setSquareColor({ squareId, color }));
-        dispatch(clearSquareImage());
+        const formattedColor = color.startsWith('#') ? color : `#${color}`;
+
+        dispatch(setSquareColor({ squareId, color: formattedColor }));
+        dispatch(clearSquareImage(squareId));
     };
 
     return (
-        <div>
+        <div className="upload-container">
             <HexColorPicker
                 color={color}
                 onChange={(selectedColor) => setColor(selectedColor)}
@@ -38,8 +41,19 @@ const ColorInput: React.FC<ColorInputProps> = ({ squareId }) => {
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
                 onKeyPress={handleKeyPress}
+                style={{
+                    marginTop: '10px',
+                    padding: '8px',
+                    fontSize: '16px',
+                    width: '200px',
+                    borderRadius: '4px',
+                    border: '1px solid #ccc',
+                }}
             />
-            <button onClick={updateColor}>Update Color</button>
+            <CustomButton
+                onClick={updateColor}
+                text='Update Color'
+            />
         </div>
     );
 };

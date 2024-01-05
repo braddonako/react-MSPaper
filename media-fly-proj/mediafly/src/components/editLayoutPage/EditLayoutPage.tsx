@@ -2,12 +2,11 @@
 import styled from 'styled-components';
 import Header from './Header';
 import '../../styles.css';
-import Column from './Columns';
-import ImageUploadButton from '../buttons/ImageUploadButton';
-import ColumnOneContent from './ColumnOneContent';
-import ColumnTwoContent from './ColumnTwoContent';
+import Column from './columns/Columns';
+import ColumnOneContent from './columns/ColumnOneContent';
+import ColumnTwoContent from './columns/ColumnTwoContent';
 import { useLocation } from 'react-router-dom';
-import ColumnThreeContent from './ColumnThreeContent';
+import ColumnThreeContent from './columns/ColumnThreeContent';
 
 const AppContainer = styled.div`
   display: flex;
@@ -29,7 +28,7 @@ function EditLayoutPage() {
       <ColumnsContainer>
         <Column flex={2}><ColumnOneContent layout={location.state.layout} /></Column>
         <Column flex={7}><ColumnTwoContent layout={location.state.layout} /> </Column>
-        <Column flex={2}><ColumnThreeContent /></Column>
+        <Column flex={2}><ColumnThreeContent layout={location.state.layout} /></Column>
       </ColumnsContainer>
     </AppContainer>
   );

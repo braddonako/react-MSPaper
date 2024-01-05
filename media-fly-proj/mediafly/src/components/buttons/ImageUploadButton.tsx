@@ -1,28 +1,34 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSquareImage, setHighlightedSection } from '../../state/grid/gridSlice';
+import { setSquareImage } from '../../state/grid/gridSlice';
+import { FaUpload } from 'react-icons/fa'; // Assuming you have a library like react-icons for the upload icon
 
 const ImageUploader: React.FC = () => {
     const dispatch = useDispatch();
-    const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const [, setSelectedImage] = useState<File | null>(null);
     const { highlightedSection } = useSelector((state: { grid: { highlightedSection: string } }) => state.grid);
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         setSelectedImage(file || null);
 
-
         if (file) {
             const imageUrl = URL.createObjectURL(file);
             dispatch(setSquareImage({ squareId: highlightedSection, imageUrl }));
         }
-
     };
 
     return (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-            <div style={{ marginLeft: '10px' }}>
-                <input type="file" onChange={handleImageChange} />
+        <div className="upload-container">
+            <>
+                <label htmlFor="fileInput" className="label-container">
+                    <FaUpload size={50} className="upload-icon" />
+                    <div className="upload-text">Click to upload an image</div>
+                </label>
+            </>
+
+            <div className="file-input-container">
+                <input id="fileInput" type="file" onChange={handleImageChange} className="file-input" />
             </div>
         </div>
     );

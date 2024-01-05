@@ -21,14 +21,13 @@ const Grid: React.FC<GridProps> = ({ layout, isEditMode }) => {
 
 
     const renderGridItems = () => {
-        console.log(squareColors);
         const gridContainerStyle = {
             backgroundImage: isEditMode ? `url(${squareImages['grid-container'] || ''})` : 'none',
             backgroundSize: 'cover',
-            backgroundColor: isEditMode ? `#${squareColors['grid-container'].replace('#', '')}` : '',
+            backgroundColor: (isEditMode) ? `${squareColors['grid-container']}` : '',
         };
         return (
-            <div className={`grid-container ${(highlightedSection === 'grid-container' || highlightedSection === "") ? 'highlighted' : ''}`} style={gridContainerStyle}>
+            <div className={`grid-container ${(highlightedSection === 'grid-container') ? 'highlighted' : ''}`} style={gridContainerStyle}>
                 {Array.from({ length: layout.rows }, (_, rowIndex) => (
                     <div key={rowIndex} style={{ display: 'flex' }}>
                         {Array.from({ length: layout.columns[rowIndex] }, (_, colIndex) => {
@@ -51,7 +50,7 @@ const Grid: React.FC<GridProps> = ({ layout, isEditMode }) => {
                                         margin: '14px',
                                         backgroundImage: isEditMode ? `url(${squareImageUrl})` : 'none',
                                         backgroundSize: 'cover',
-                                        backgroundColor: isEditMode ? `#${squareColor.replace('#', '')}` : '',
+                                        backgroundColor: isEditMode ? `${squareColor}` : '',
                                     }}
                                 >{isEditMode ? squareText && <p>{squareText}</p> : ''}</div>
                             );

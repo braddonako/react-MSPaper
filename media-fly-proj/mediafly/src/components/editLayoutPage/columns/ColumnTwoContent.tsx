@@ -1,4 +1,4 @@
-import Grid from '../grid';
+import Grid from '../../grid';
 
 interface ColumnTwoContentProps {
     layout: { rows: number; columns: number[] };

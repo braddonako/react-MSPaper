@@ -22,6 +22,10 @@
     border: 3px solid black;
 }
 
+.no-border {
+    border: none;
+}
+
 .grid-item.highlighted {
     border-color: #66ff00;
 }
@@ -76,4 +80,38 @@ button.highlighted {
     color: white;
     /* Change this to the text color for highlighted buttons */
     /* Add any additional styles for highlighted buttons here */
+}
+
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+.label-container {
+    cursor: pointer;
+}
+
+.upload-icon {
+    margin-bottom: 10px;
+    font-size: 50px;
+}
+
+.upload-text {
+    font-size: 14px;
+    color: #555;
+}
+
+.file-input-container {
+    margin-left: 10px;
+}
+
+.file-input {
+    display: none;
 }
