@@ -35,11 +35,6 @@ const SelectLayout = () => {
                     <Layout key={layout.id} layout={layout} id={layout.id} onClick={() => handleClick(layout)} />
                 ))}
             </div>
-
-            <div style={{ textAlign: 'right', paddingRight: '50px', paddingTop: '50px' }}>
-
-                {/* <CustomButton onClick={() => handleClick()} text="NEXT" /> */}
-            </div>
         </div>
     );
 };
