@@ -9,16 +9,7 @@
     flex: 1;
 }
 
-/* LayoutOne */
 
-.background {
-    background-color: #f0f0f0;
-    border: 1px solid black;
-    padding: 20px;
-    max-width: 1200px;
-    width: 300px;
-    margin: 0 auto;
-}
 
 .header {
     background-color: #808080;
@@ -32,7 +23,15 @@
     /* Background color when highlighted */
 }
 
-.background.highlighted {
+.grid-container {
+    background-color: #f0f0f0;
+    border: 1px solid black;
+    /* Set your desired background color */
+    padding: 40px;
+    /* Add padding or adjust as needed */
+}
+
+.grid-container.highlighted {
     border-color: #66ff00;
     /* Background color when highlighted */
 }
@@ -61,4 +60,20 @@
     height: 100%;
     object-fit: cover;
     /* This property ensures that the image covers the entire container */
+}
+
+/* buttons */
+
+button {
+    /* Your default button styles here */
+    padding: 8px;
+    margin: 5px;
+}
+
+button.highlighted {
+    background-color: black;
+    /* Change this to the highlight color you prefer */
+    color: white;
+    /* Change this to the text color for highlighted buttons */
+    /* Add any additional styles for highlighted buttons here */
 }

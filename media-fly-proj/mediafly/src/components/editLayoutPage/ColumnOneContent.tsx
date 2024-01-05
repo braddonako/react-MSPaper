@@ -1,5 +1,6 @@
 import Grid from '../grid';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { setHighlightedSection } from '../../state/grid/gridSlice';
 
 interface ColumnOneContentProps {
@@ -7,21 +8,29 @@ interface ColumnOneContentProps {
 }
 
 const ColumnOneContent: React.FC<ColumnOneContentProps> = ({ layout }) => {
+    const highlightedSection = useSelector((state: { grid: { highlightedSection: string } }) => state.grid.highlightedSection);
+
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        handleButtonClick(0, 0, true);
+    }, []);
+
     const handleButtonClick = (rowIndex: number, colIndex: number, isBackground: boolean = false) => {
-        const sectionIdentifier = isBackground ? 'background' : `column${colIndex + 1}row${rowIndex + 1}`;
+        const sectionIdentifier = isBackground ? 'grid-container' : `column${colIndex + 1}row${rowIndex + 1}`;
         dispatch(setHighlightedSection(sectionIdentifier));
     };
 
     const renderButtons = () => {
-        // Button for highlighting the background container
+        console.log(highlightedSection);
         const backgroundButton = (
+
             <button
                 key="button-background"
-                onClick={() => handleButtonClick(0, 0, true)} // You can choose any default values for rowIndex and colIndex
+                onClick={() => handleButtonClick(0, 0, true)}
+                className={highlightedSection === 'grid-container' ? 'highlighted' : ''}
             >
-                Highlight Background
+                Background
             </button>
         );
 
@@ -29,16 +38,19 @@ const ColumnOneContent: React.FC<ColumnOneContentProps> = ({ layout }) => {
 
         for (let rowIndex = 0; rowIndex < layout.rows; rowIndex++) {
             for (let colIndex = 0; colIndex < layout.columns[rowIndex]; colIndex++) {
+                const sectionIdentifier = `column${colIndex + 1}row${rowIndex + 1}`;
                 buttons.push(
                     <button
-                        key={`button-column${colIndex + 1}-row${rowIndex + 1}`}
+                        key={`button-${sectionIdentifier}`}
                         onClick={() => handleButtonClick(rowIndex, colIndex)}
+                        className={highlightedSection === sectionIdentifier ? 'highlighted' : ''}
                     >
-                        {`Highlight Column ${colIndex + 1} Row ${rowIndex + 1}`}
+                        {`Column ${colIndex + 1} Row ${rowIndex + 1}`}
                     </button>
                 );
             }
         }
+
         return buttons;
     };
 
