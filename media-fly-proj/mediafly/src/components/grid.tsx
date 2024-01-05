@@ -11,20 +11,14 @@ interface GridProps {
 
 const Grid: React.FC<GridProps> = ({ layout, isEditMode }) => {
     const dispatch = useDispatch();
-    const { highlightedSection, squareImages } = useSelector((state: RootState) => state.grid);
+    const { highlightedSection, squareImages, squareTexts, squareColors } = useSelector((state: RootState) => state.grid);
 
 
     useEffect(() => {
         dispatch(setGrid(layout));
     }, [dispatch, layout]);
 
-    const handleSquareClick = (rowIndex: number, colIndex: number) => {
-        const squareId = `column${colIndex + 1}row${rowIndex + 1}`;
-        dispatch(setHighlightedSection(squareId));
 
-        const selectedImageUrl = 'your_selected_image_url';
-        dispatch(setSquareImage({ squareId, imageUrl: selectedImageUrl }));
-    };
 
     const renderGridItems = () => {
         return (
@@ -34,23 +28,26 @@ const Grid: React.FC<GridProps> = ({ layout, isEditMode }) => {
                         {Array.from({ length: layout.columns[rowIndex] }, (_, colIndex) => {
                             const squareId = `column${colIndex + 1}row${rowIndex + 1}`;
                             const squareImageUrl = squareImages[squareId] || '';
+                            const squareText = squareTexts[squareId] || '';
+                            const squareColor = squareColors[squareId] || '';
+
 
                             return (
                                 <div
                                     key={colIndex}
-                                    onClick={() => handleSquareClick(rowIndex, colIndex)}
                                     className={`grid-item ${highlightedSection === squareId ? 'highlighted' : ''}`}
                                     style={{
                                         flex: 1,
-                                        border: '1px solid black',
+                                        border: `${highlightedSection === squareId ? 'highlighted' : ''}`,
                                         padding: '10px',
                                         height: isEditMode ? '200px' : '100px',
                                         width: isEditMode ? '100%' : '75px',
                                         margin: '14px',
                                         backgroundImage: isEditMode ? `url(${squareImageUrl})` : 'none',
                                         backgroundSize: 'cover',
+                                        backgroundColor: isEditMode ? `#${squareColor.replace('#', '')}` : '',
                                     }}
-                                ></div>
+                                >{isEditMode ? squareText && <p>{squareText}</p> : ''}</div>
                             );
                         })}
                     </div>

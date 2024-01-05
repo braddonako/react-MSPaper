@@ -7,6 +7,7 @@ import ImageUploadButton from '../buttons/ImageUploadButton';
 import ColumnOneContent from './ColumnOneContent';
 import ColumnTwoContent from './ColumnTwoContent';
 import { useLocation } from 'react-router-dom';
+import ColumnThreeContent from './ColumnThreeContent';
 
 const AppContainer = styled.div`
   display: flex;
@@ -28,7 +29,7 @@ function EditLayoutPage() {
       <ColumnsContainer>
         <Column flex={2}><ColumnOneContent layout={location.state.layout} /></Column>
         <Column flex={7}><ColumnTwoContent layout={location.state.layout} /> </Column>
-        <Column flex={2}><ImageUploadButton /></Column>
+        <Column flex={2}><ColumnThreeContent /></Column>
       </ColumnsContainer>
     </AppContainer>
   );

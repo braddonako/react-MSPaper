@@ -18,22 +18,22 @@
     margin-bottom: 20px;
 }
 
+.grid-item {
+    border: 3px solid black;
+}
+
 .grid-item.highlighted {
-    background-color: #66ff00;
-    /* Background color when highlighted */
+    border-color: #66ff00;
 }
 
 .grid-container {
     background-color: #f0f0f0;
     border: 1px solid black;
-    /* Set your desired background color */
     padding: 40px;
-    /* Add padding or adjust as needed */
 }
 
 .grid-container.highlighted {
     border-color: #66ff00;
-    /* Background color when highlighted */
 }
 
 .vertical-buttons {
