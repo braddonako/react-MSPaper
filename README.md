@@ -1,7 +1,7 @@
 # react-MSPaper
 
 Running the application: 
-
+git
 Step 1: Download a code editor. I prefer visual studio code. Link to download found below:
 https://code.visualstudio.com/ --> download mac universal
 
@@ -13,6 +13,8 @@ step 3:
 Download nodejs
 nodejs.org/en/download
 
+Step 4: npm install 
+(If you are receiving errors, remove the package-lock.json, package.json, and node_modules, then run npm install)
 
 Copy and paste this into your package.json
 
@@ -68,8 +70,7 @@ Copy and paste this into your package.json
     ]
   }
 }
+Step 5: npm install react-scripts --save
 
+step 6: npm start
 
-Step 4: npm install 
-(If you are receiving errors, remove the package-lock.json, package.json, and node_modules, then run npm install)
-Step 5: npm start
