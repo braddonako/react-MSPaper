@@ -72,5 +72,5 @@ Copy and paste this into your package.json
 }
 Step 5: npm install react-scripts --save
 
-step 6: npm start
+step 6: npm start (make sure your package.json and package-lock.json are under mediafly proj)
 
