@@ -29,30 +29,21 @@ const gridSlice = createSlice({
         setHighlightedSection: (state, action: PayloadAction<string>) => {
             state.highlightedSection = action.payload;
         },
-        setSquareColor: (state, action: PayloadAction<{ squareId: string; color: string }>) => {
-            const { squareId, color } = action.payload;
-            state.squareColors[squareId] = color;
+        setSquareProperty: (
+            state,
+            action: PayloadAction<{ squareId: string; property: 'color' | 'image' | 'text'; value: string }>
+        ) => {
+            const { squareId, property, value } = action.payload;
+            state[property === 'color' ? 'squareColors' : property === 'image' ? 'squareImages' : 'squareTexts'][squareId] = value;
         },
-        setSquareImage: (state, action: PayloadAction<{ squareId: string; imageUrl: string }>) => {
-            const { squareId, imageUrl } = action.payload;
-            state.squareImages[squareId] = imageUrl;
+        clearSquareProperty: (state, action: PayloadAction<{ squareId: string; property: 'color' | 'image' | 'text' }>) => {
+            const { squareId, property } = action.payload;
+            delete state[property === 'color' ? 'squareColors' : property === 'image' ? 'squareImages' : 'squareTexts'][squareId];
         },
-        setSquareText: (state, action: PayloadAction<{ squareId: string; text: string }>) => {
-            const { squareId, text } = action.payload;
-            state.squareTexts[squareId] = text;
-        },
-        clearSquareImage: (state, action: PayloadAction<string>) => {
-            const squareId = action.payload;
-            delete state.squareImages[squareId];
-        },
-        clearSquareImages: (state) => {
-            state.squareImages = {};
-        },
-        clearSquareText: (state) => {
-            state.squareTexts = {};
-        },
-        clearSquareColor: (state) => {
+        clearAllSquareProperties: (state) => {
             state.squareColors = {};
+            state.squareImages = {};
+            state.squareTexts = {};
         },
         clearHighlightedColor: (state) => {
             state.highlightedSection = '';
@@ -63,13 +54,9 @@ const gridSlice = createSlice({
 export const {
     setGrid,
     setHighlightedSection,
-    setSquareColor,
-    setSquareImage,
-    setSquareText,
-    clearSquareColor,
-    clearSquareImage,
-    clearSquareImages,
-    clearSquareText,
+    setSquareProperty,
+    clearSquareProperty,
+    clearAllSquareProperties,
     clearHighlightedColor,
 } = gridSlice.actions;
 

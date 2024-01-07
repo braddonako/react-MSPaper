@@ -2,6 +2,7 @@ import Grid from '../../grid';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setHighlightedSection } from '../../../state/grid/gridSlice';
+import SquareControls from '../../buttons/clearSquareContentButton';
 
 interface ColumnOneContentProps {
     layout: { rows: number; columns: number[] };
@@ -9,7 +10,6 @@ interface ColumnOneContentProps {
 
 const ColumnOneContent: React.FC<ColumnOneContentProps> = ({ layout }) => {
     const highlightedSection = useSelector((state: { grid: { highlightedSection: string } }) => state.grid.highlightedSection);
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,9 +21,10 @@ const ColumnOneContent: React.FC<ColumnOneContentProps> = ({ layout }) => {
         dispatch(setHighlightedSection(sectionIdentifier));
     };
 
+
+
     const renderButtons = () => {
         const backgroundButton = (
-
             <button
                 key="button-background"
                 onClick={() => handleButtonClick(0, 0, true)}
@@ -49,6 +50,11 @@ const ColumnOneContent: React.FC<ColumnOneContentProps> = ({ layout }) => {
                 );
             }
         }
+
+        const resetSquareButton = (
+            <SquareControls squareId={highlightedSection} />
+        );
+        buttons.push(resetSquareButton);
 
         return buttons;
     };

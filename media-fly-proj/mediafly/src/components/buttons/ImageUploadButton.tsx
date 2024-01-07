@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSquareImage } from '../../state/grid/gridSlice';
+import { setSquareProperty } from '../../state/grid/gridSlice';
 import { FaUpload } from 'react-icons/fa'; // Assuming you have a library like react-icons for the upload icon
 
 const ImageUploader: React.FC = () => {
@@ -13,8 +13,9 @@ const ImageUploader: React.FC = () => {
         setSelectedImage(file || null);
 
         if (file) {
+            console.log(highlightedSection);
             const imageUrl = URL.createObjectURL(file);
-            dispatch(setSquareImage({ squareId: highlightedSection, imageUrl }));
+            dispatch(setSquareProperty({ squareId: highlightedSection, property: "image", value: imageUrl, }));
         }
     };
 

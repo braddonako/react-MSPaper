@@ -1,8 +1,7 @@
 import React, { useState, KeyboardEvent } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSquareColor } from '../../state/grid/gridSlice'; // Replace with the correct path to your grid slice
 import { HexColorPicker } from 'react-colorful';
-import { clearSquareImage } from '../../state/grid/gridSlice';
+import { clearSquareProperty, setSquareProperty } from '../../state/grid/gridSlice';
 import CustomButton from '../buttons/button';
 
 
@@ -18,15 +17,14 @@ const ColorInput: React.FC<ColorInputProps> = ({ squareId }) => {
     const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             updateColor();
-            dispatch(clearSquareImage(squareId));
+            dispatch(clearSquareProperty({ squareId, property: 'image' }));
         }
     };
 
     const updateColor = () => {
         const formattedColor = color.startsWith('#') ? color : `#${color}`;
-
-        dispatch(setSquareColor({ squareId, color: formattedColor }));
-        dispatch(clearSquareImage(squareId));
+        dispatch(setSquareProperty({ squareId, property: 'color', value: formattedColor }));
+        dispatch(clearSquareProperty({ squareId, property: 'image' }));
     };
 
     return (

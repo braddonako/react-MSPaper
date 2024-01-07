@@ -13,8 +13,6 @@ interface ColumnThreeContentProps {
 
 const ColumnThreeContent: React.FC<ColumnThreeContentProps> = (props) => {
     const { layout } = props;
-    const { rows, columns } = layout;
-
     const { highlightedSection } = useSelector((state: { grid: { highlightedSection: string } }) => state.grid);
     const navigate = useNavigate();
 

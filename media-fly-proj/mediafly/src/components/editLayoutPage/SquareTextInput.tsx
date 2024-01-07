@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSquareText } from '../../state/grid/gridSlice'; // Import your grid slice actions
+import { setSquareProperty } from '../../state/grid/gridSlice'; // Import your grid slice actions
 import CustomButton from '../buttons/button';
 
 interface SquareTextInputProps {
@@ -16,12 +16,11 @@ const SquareTextInput: React.FC<SquareTextInputProps> = ({ squareId }) => {
     };
 
     const handleInputBlur = () => {
-        dispatch(setSquareText({ squareId, text: inputValue }));
+        dispatch(setSquareProperty({ squareId, property: 'text', value: inputValue }));
     };
 
     const handleButtonClick = () => {
-        // Dispatch the setSquareText action when the button is clicked
-        dispatch(setSquareText({ squareId, text: inputValue }));
+        dispatch(setSquareProperty({ squareId, property: 'text', value: inputValue }));
     };
 
     return (
