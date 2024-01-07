@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSquareProperty } from '../../state/grid/gridSlice'; // Import your grid slice actions
+import { setSquareProperty, SquareProperty } from '../../state/grid/gridSlice'; // Import your grid slice actions
 import CustomButton from '../buttons/button';
+import ClearSquarePropertyButton from '../buttons/ClearSquarePropertyButton';
 
 interface SquareTextInputProps {
     squareId: string;
@@ -16,15 +17,15 @@ const SquareTextInput: React.FC<SquareTextInputProps> = ({ squareId }) => {
     };
 
     const handleInputBlur = () => {
-        dispatch(setSquareProperty({ squareId, property: 'text', value: inputValue }));
+        dispatch(setSquareProperty({ squareId, property: SquareProperty.Text, value: inputValue }));
     };
 
     const handleButtonClick = () => {
-        dispatch(setSquareProperty({ squareId, property: 'text', value: inputValue }));
+        dispatch(setSquareProperty({ squareId, property: SquareProperty.Text, value: inputValue }));
     };
 
     return (
-        <div className="upload-container">
+        <div className="column-three-container">
             <input
                 type="text"
                 value={inputValue}
@@ -36,6 +37,8 @@ const SquareTextInput: React.FC<SquareTextInputProps> = ({ squareId }) => {
                 onClick={handleButtonClick}
                 text='Update Text'
             />
+            <ClearSquarePropertyButton squareId={squareId} property={SquareProperty.Text} />
+
         </div>
     );
 };

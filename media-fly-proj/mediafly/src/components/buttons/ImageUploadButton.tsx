@@ -1,7 +1,8 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSquareProperty } from '../../state/grid/gridSlice';
+import { setSquareProperty, SquareProperty } from '../../state/grid/gridSlice';
 import { FaUpload } from 'react-icons/fa'; // Assuming you have a library like react-icons for the upload icon
+import ClearSquarePropertyButton from './ClearSquarePropertyButton';
 
 const ImageUploader: React.FC = () => {
     const dispatch = useDispatch();
@@ -12,15 +13,15 @@ const ImageUploader: React.FC = () => {
         const file = e.target.files?.[0];
         setSelectedImage(file || null);
 
+
         if (file) {
-            console.log(highlightedSection);
             const imageUrl = URL.createObjectURL(file);
-            dispatch(setSquareProperty({ squareId: highlightedSection, property: "image", value: imageUrl, }));
+            dispatch(setSquareProperty({ squareId: highlightedSection, property: SquareProperty.Image, value: imageUrl, }));
         }
     };
 
     return (
-        <div className="upload-container">
+        <div className="column-three-container">
             <>
                 <label htmlFor="fileInput" className="label-container">
                     <FaUpload size={50} className="upload-icon" />
@@ -31,6 +32,7 @@ const ImageUploader: React.FC = () => {
             <div className="file-input-container">
                 <input id="fileInput" type="file" onChange={handleImageChange} className="file-input" />
             </div>
+            <div><ClearSquarePropertyButton squareId={highlightedSection} property={SquareProperty.Image} /></div>
         </div>
     );
 };

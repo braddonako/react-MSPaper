@@ -1,5 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export enum SquareProperty {
+    Color = 'color',
+    Image = 'image',
+    Text = 'text',
+}
+
 interface GridState {
     rows: number;
     columns: number[];
@@ -31,14 +37,14 @@ const gridSlice = createSlice({
         },
         setSquareProperty: (
             state,
-            action: PayloadAction<{ squareId: string; property: 'color' | 'image' | 'text'; value: string }>
+            action: PayloadAction<{ squareId: string; property: SquareProperty; value: string }>
         ) => {
             const { squareId, property, value } = action.payload;
-            state[property === 'color' ? 'squareColors' : property === 'image' ? 'squareImages' : 'squareTexts'][squareId] = value;
+            state[property === SquareProperty.Color ? 'squareColors' : property === SquareProperty.Image ? 'squareImages' : 'squareTexts'][squareId] = value;
         },
-        clearSquareProperty: (state, action: PayloadAction<{ squareId: string; property: 'color' | 'image' | 'text' }>) => {
+        clearSquareProperty: (state, action: PayloadAction<{ squareId: string; property: SquareProperty }>) => {
             const { squareId, property } = action.payload;
-            delete state[property === 'color' ? 'squareColors' : property === 'image' ? 'squareImages' : 'squareTexts'][squareId];
+            delete state[property === SquareProperty.Color ? 'squareColors' : property === SquareProperty.Image ? 'squareImages' : 'squareTexts'][squareId];
         },
         clearAllSquareProperties: (state) => {
             state.squareColors = {};

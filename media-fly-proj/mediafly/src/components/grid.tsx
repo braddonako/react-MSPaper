@@ -21,10 +21,12 @@ const Grid: React.FC<GridProps> = ({ layout, isEditMode }) => {
 
 
     const renderGridItems = () => {
+        console.log(squareColors);
+        console.log(squareColors);
         const gridContainerStyle = {
             backgroundImage: isEditMode ? `url(${squareImages['grid-container'] || ''})` : 'none',
             backgroundSize: 'cover',
-            backgroundColor: (isEditMode) ? `${squareColors['grid-container']}` : '',
+            ...(isEditMode && squareColors['grid-container'] && { backgroundColor: squareColors['grid-container'] }),
         };
         return (
             <div className={`grid-container ${(highlightedSection === 'grid-container') ? 'highlighted' : ''}`} style={gridContainerStyle}>

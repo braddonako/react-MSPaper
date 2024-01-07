@@ -1,8 +1,9 @@
 import React, { useState, KeyboardEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { HexColorPicker } from 'react-colorful';
-import { clearSquareProperty, setSquareProperty } from '../../state/grid/gridSlice';
+import { SquareProperty, clearSquareProperty, setSquareProperty } from '../../state/grid/gridSlice';
 import CustomButton from '../buttons/button';
+import ClearSquarePropertyButton from '../buttons/ClearSquarePropertyButton';
 
 
 
@@ -17,18 +18,19 @@ const ColorInput: React.FC<ColorInputProps> = ({ squareId }) => {
     const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             updateColor();
-            dispatch(clearSquareProperty({ squareId, property: 'image' }));
+            dispatch(clearSquareProperty({ squareId, property: SquareProperty.Image }));
         }
     };
 
     const updateColor = () => {
+        console.log(squareId);
         const formattedColor = color.startsWith('#') ? color : `#${color}`;
-        dispatch(setSquareProperty({ squareId, property: 'color', value: formattedColor }));
-        dispatch(clearSquareProperty({ squareId, property: 'image' }));
+        dispatch(setSquareProperty({ squareId, property: SquareProperty.Color, value: formattedColor }));
+        dispatch(clearSquareProperty({ squareId, property: SquareProperty.Image }));
     };
 
     return (
-        <div className="upload-container">
+        <div className="column-three-container color">
             <HexColorPicker
                 color={color}
                 onChange={(selectedColor) => setColor(selectedColor)}
@@ -52,6 +54,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ squareId }) => {
                 onClick={updateColor}
                 text='Update Color'
             />
+            <ClearSquarePropertyButton squareId={squareId} property={SquareProperty.Color} />
         </div>
     );
 };
