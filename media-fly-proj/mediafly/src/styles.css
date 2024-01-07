@@ -95,6 +95,10 @@ button.highlighted {
     height: 400px;
 }
 
+.column-three-container.text {
+    height: 250px;
+}
+
 .label-container {
     cursor: pointer;
 }

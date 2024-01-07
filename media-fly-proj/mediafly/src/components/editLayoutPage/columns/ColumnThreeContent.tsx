@@ -23,7 +23,7 @@ const ColumnThreeContent: React.FC<ColumnThreeContentProps> = (props) => {
     return (
         <div className="vertical-buttons">
             <ImageUploadButton />
-            <SquareTextInput squareId={highlightedSection} />
+            {highlightedSection === 'grid-container' ? <div /> : <SquareTextInput squareId={highlightedSection} />}
             <SetSquareColor squareId={highlightedSection} />
             <CustomButton text="Preview Layout" onClick={handleClick} />
         </div>

@@ -11,7 +11,7 @@ interface GridProps {
 
 const Grid: React.FC<GridProps> = ({ layout, isEditMode }) => {
     const dispatch = useDispatch();
-    const { highlightedSection, squareImages, squareTexts, squareColors } = useSelector((state: RootState) => state.grid);
+    const { highlightedSection, squareImages, squareTexts, squareColors, squareStyles } = useSelector((state: RootState) => state.grid);
 
 
     useEffect(() => {
@@ -37,6 +37,8 @@ const Grid: React.FC<GridProps> = ({ layout, isEditMode }) => {
                             const squareImageUrl = squareImages[squareId] || '';
                             const squareText = squareTexts[squareId] || '';
                             const squareColor = squareColors[squareId] || '';
+                            const squareStyle = squareStyles[squareId] || {};
+
 
 
                             return (
@@ -53,6 +55,9 @@ const Grid: React.FC<GridProps> = ({ layout, isEditMode }) => {
                                         backgroundImage: isEditMode ? `url(${squareImageUrl})` : 'none',
                                         backgroundSize: 'cover',
                                         backgroundColor: isEditMode ? `${squareColor}` : '',
+                                        fontStyle: squareStyle.italic ? 'italic' : 'normal',
+                                        fontWeight: squareStyle.bold ? 'bold' : 'normal',
+                                        textDecoration: squareStyle.underlined ? 'underline' : 'none',
                                     }}
                                 >{isEditMode ? squareText && <p>{squareText}</p> : ''}</div>
                             );

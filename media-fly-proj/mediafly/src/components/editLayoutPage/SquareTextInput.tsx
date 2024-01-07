@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setSquareProperty, SquareProperty } from '../../state/grid/gridSlice'; // Import your grid slice actions
 import CustomButton from '../buttons/button';
 import ClearSquarePropertyButton from '../buttons/ClearSquarePropertyButton';
+import StyleButton from '../buttons/TextStyleButton';
 
 interface SquareTextInputProps {
     squareId: string;
@@ -25,7 +26,7 @@ const SquareTextInput: React.FC<SquareTextInputProps> = ({ squareId }) => {
     };
 
     return (
-        <div className="column-three-container">
+        <div className="column-three-container text">
             <input
                 type="text"
                 value={inputValue}
@@ -37,6 +38,7 @@ const SquareTextInput: React.FC<SquareTextInputProps> = ({ squareId }) => {
                 onClick={handleButtonClick}
                 text='Update Text'
             />
+            <StyleButton squareId={squareId} />
             <ClearSquarePropertyButton squareId={squareId} property={SquareProperty.Text} />
 
         </div>

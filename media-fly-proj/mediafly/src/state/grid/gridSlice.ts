@@ -13,6 +13,7 @@ interface GridState {
     squareColors: Record<string, string>;
     squareImages: Record<string, string>;
     squareTexts: Record<string, string>;
+    squareStyles: Record<string, { italic?: boolean; bold?: boolean; underlined?: boolean }>;
 }
 
 const initialState: GridState = {
@@ -22,6 +23,8 @@ const initialState: GridState = {
     squareColors: {},
     squareImages: {},
     squareTexts: {},
+    squareStyles: {},
+
 };
 
 const gridSlice = createSlice({
@@ -54,6 +57,19 @@ const gridSlice = createSlice({
         clearHighlightedColor: (state) => {
             state.highlightedSection = '';
         },
+        setSquareStyle: (
+            state,
+            action: PayloadAction<{ squareId: string; italic?: boolean; bold?: boolean; underlined?: boolean }>
+        ) => {
+            const { squareId, italic, bold, underlined } = action.payload;
+
+            const existingStyle = state.squareStyles[squareId] || {};
+            state.squareStyles[squareId] = { ...existingStyle, italic, bold, underlined };
+        },
+        clearSquareStyle: (state, action: PayloadAction<{ squareId: string }>) => {
+            const { squareId } = action.payload;
+            delete state.squareStyles[squareId];
+        },
     },
 });
 
@@ -64,6 +80,8 @@ export const {
     clearSquareProperty,
     clearAllSquareProperties,
     clearHighlightedColor,
+    setSquareStyle,
+    clearSquareStyle,
 } = gridSlice.actions;
 
 export default gridSlice.reducer;
